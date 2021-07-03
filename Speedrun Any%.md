@@ -27,7 +27,7 @@ Check https://github.com/sentinel-official/docs/tree/master/guides/nodes/dVPN fo
     This will 
     * Create /etc/docker/daemon.json with configuration
     * Restart the Docker process
-    * Install `iptables-persistent` package
+    * Install `iptables-persistent` package (No recommended when asked to save IP rules)
     * Enable NAT for the private Docker subnet on the host
     * Install Git package
     * Clone the GitHub repository
