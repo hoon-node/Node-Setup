@@ -41,6 +41,7 @@ Check https://github.com/sentinel-official/docs/tree/master/guides/nodes/dVPN fo
 ‎
 
 5. Create a self-signed TLS certificate
+
     ```
     openssl req -new \
       -newkey ec \
