@@ -1,5 +1,10 @@
 # Node-Setup
 
+Check https://github.com/sentinel-official/docs/tree/master/guides/nodes/dVPN for lengthily guide
+
+    
+‎
+
 1. Install cURL package
 
     ```sudo apt-get install --yes curl```
