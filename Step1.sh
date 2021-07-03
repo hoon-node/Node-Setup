@@ -3,32 +3,33 @@
 
 run () {
         
-    echo "Update the list of available software packages"
-    echo ""
+    echo -e "\e[32mUpdate the list of available software packages"
+    echo -e "\e[39m"
     sudo apt-get update
 
     echo ""
-    echo "Install cURL package"
-    echo ""
+    echo -e "\e[32mInstall cURL package"
+    echo -e "\e[39m"
     sudo apt-get install --yes curl
     
     echo ""
-    echo "Get the official Docker installation script"
-    echo ""
+    echo -e "\e[32mGet the official Docker installation script"
+    echo -e "\e[39m"
     curl -fsSL get.docker.com -o ${HOME}/get-docker.sh
     
     echo ""
-    echo "Install Docker" 
-    echo ""
+    echo -e "\e[32mInstall Docker" 
+    echo -e "\e[39m"
     sudo sh ${HOME}/get-docker.sh
     
     echo ""
-    echo "Add user to Docker group" 
-    echo ""
+    echo -e "\e[32mAdd user to Docker group" 
+    echo -e "\e[39m"
     sudo usermod -aG docker $(whoami)
     
     echo ""
-    echo "Reboot the machine"
+    echo -e "\e[32mReboot the machine"
+    echo -e "\e[39m"
     sudo reboot now
     
 }
