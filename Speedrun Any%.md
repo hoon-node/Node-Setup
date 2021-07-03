@@ -25,7 +25,7 @@ Check https://github.com/sentinel-official/docs/tree/master/guides/nodes/dVPN fo
 3. Once restarted run `curl https://raw.githubusercontent.com/hoon-node/Node-Setup/main/Step2_3_4.sh | bash`
     
     This will 
-    * Create /etc/docker/daemon.json with configuration
+    * Create */etc/docker/daemon.json* with configuration
     * Restart the Docker process
     * Install `iptables-persistent` package (No recommended when asked to save IP rules)
     * Enable NAT for the private Docker subnet on the host
