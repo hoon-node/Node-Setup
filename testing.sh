@@ -1,7 +1,5 @@
 #!/bin/bash
 
-$Y = y
-$N = n
 
 
 echo "Enter your Node Moniker:"
