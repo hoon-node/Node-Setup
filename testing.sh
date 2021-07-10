@@ -1,23 +1,23 @@
 #!/bin/bash
 
-Y = y
-N = n
+$Y = y
+$N = n
 
 
 echo "Enter your Node Moniker:"
-read moniker_name
+read moniker_name < /dev/tty
 
 echo "Enter the price you want to charge per GB in udvpn:"
-read price
+read price < /dev/tty
 
 echo "What do you name your wallet:"
-read wallet_name
+read wallet_name < /dev/tty
 
-echo "Do you want to recover an existing wallet? (Y/N)"
-read answer
+echo "Do you want to recover an existing wallet? (y/n)"
+read answer < /dev/tty
 
 echo "Set your wallet password:"
-read wallet_password
+read wallet_password < /dev/tty
 
 
 if [$answer = $y]
