@@ -22,7 +22,7 @@ read wallet_password < /dev/tty
 if [[ "$answer" == "$y" ]]
 then 
 echo "Enter your mnemonic:"
-read mnemonic
+read mnemonic  < /dev/tty
 docker run --rm \
     --interactive \
     --tty \
