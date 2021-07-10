@@ -27,8 +27,7 @@ docker run --rm \
     --interactive \
     --tty \
     --volume ${HOME}/.sentinelnode:/root/.sentinelnode \
-    sentinel-dvpn-node process keys add $wallet_name --recover
-echo $mnemonic
+    sentinel-dvpn-node process keys add $wallet_name --recover < echo "$mnemonic"
 else
 docker run --rm \
     --interactive \
