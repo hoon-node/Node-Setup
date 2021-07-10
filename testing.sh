@@ -1,6 +1,7 @@
 #!/bin/bash
 
-
+y=y
+n=n
 
 echo "Enter your Node Moniker:"
 read moniker_name < /dev/tty
