@@ -1,5 +1,5 @@
 
 echo "keyname"
-read walletname < /dev/tty
+read username < /dev/tty
 
-sed '/from = "/a $walletname' ${HOME}/.sentinelnode/config.toml
+sed -i 's/^\(from\s*=\s*\).*$/\1\"'`echo ${username}`'\"/' ${HOME}/.sentinelnode/config.toml
