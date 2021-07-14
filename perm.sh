@@ -1,1 +1,1 @@
-chmod -R 777 /etc/docker/
+sudo chmod -R 777 /etc/docker/
