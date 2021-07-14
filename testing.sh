@@ -19,8 +19,7 @@ echo "Set your wallet password:"
 read wallet_password < /dev/tty
 
 
-if [ "$answer" == "$y" ]
-then 
+if [ "$answer" = "y" ]; then
 echo "Enter your mnemonic:"
 read mnemonic  < /dev/tty
 
