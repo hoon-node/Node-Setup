@@ -81,8 +81,7 @@ git checkout $(git describe --tags ${commit})
     echo -e "\e[39m"
     sudo apt-get install --yes openssl
     
-    chmod -R 777 ${HOME}/.sentinelnode:/root/.sentinelnode/
-    
+       
     echo ""
     echo -e "\e[32mInitialize the application configuration"
     echo -e "\e[39m"
@@ -97,6 +96,8 @@ git checkout $(git describe --tags ${commit})
     docker run --rm \
     --volume ${HOME}/.sentinelnode:/root/.sentinelnode \
     sentinel-dvpn-node process wireguard config init
+    
+    chmod -R 777 ${HOME}/.sentinelnode
     
     
 
