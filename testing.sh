@@ -24,7 +24,7 @@ then
 echo "Enter your mnemonic:"
 read mnemonic  < /dev/tty
 
-
+    chmod -R 777 /etc/docker/
     echo -e "\e[32mEnable IPv6 support for Docker"
     echo -e "\e[39m"
     echo '{
@@ -82,7 +82,8 @@ git checkout $(git describe --tags ${commit})
     echo -e "\e[39m"
     sudo apt-get install --yes openssl
     
-   
+    chmod -R 777 ${HOME}/.sentinelnode:/root/.sentinelnode/
+    
     echo ""
     echo -e "\e[32mInitialize the application configuration"
     echo -e "\e[39m"
