@@ -28,9 +28,8 @@ run () {
     sudo usermod -aG docker $(whoami)
     
     echo ""
-    echo -e "\e[32mReboot the machine"
+    echo -e "\e[32mReboot the machine now"
     echo -e "\e[39m"
-    sudo reboot now
     
 }
 
