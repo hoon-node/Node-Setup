@@ -18,11 +18,14 @@ Check https://github.com/sentinel-official/docs/tree/master/guides/nodes/dVPN fo
     * Get the official Docker installation script
     * Install Docker
     * Add user to Docker group
-    * **RESTART** the machine
     
 ‎
 
-3. Once restarted run `curl https://raw.githubusercontent.com/hoon-node/Node-Setup/main/Step2_3_4.sh | bash`
+3. **RESTART** the machine
+    
+‎
+
+4. Once restarted run `curl https://raw.githubusercontent.com/hoon-node/Node-Setup/main/Step2_3_4.sh | bash`
     
     This will 
     * Create */etc/docker/daemon.json* with configuration
@@ -66,13 +69,13 @@ Check https://github.com/sentinel-official/docs/tree/master/guides/nodes/dVPN fo
 
 ‎
 
-8. Open the wireguard.toml `nano ${HOME}/.sentinelnode/wireguard.toml`
+7. Open the wireguard.toml `nano ${HOME}/.sentinelnode/wireguard.toml`
   
    * Look for wireguard port (`listen_port`) and remember
 
 ‎
 
-10. Move created TLS keys
+8. Move created TLS keys
 
     ```
     mv ${HOME}/tls.crt ${HOME}/.sentinelnode/tls.crt
@@ -81,7 +84,7 @@ Check https://github.com/sentinel-official/docs/tree/master/guides/nodes/dVPN fo
 
 ‎
 
-11. Add/Recover an account key
+9. Add/Recover an account key
 
 
     ```
@@ -97,7 +100,7 @@ Check https://github.com/sentinel-official/docs/tree/master/guides/nodes/dVPN fo
 
 ‎
 
-13. Run the node
+10. Run the node
 
     ```
     docker run --rm \
