@@ -10,7 +10,7 @@
 
     * `sudo docker ps` to get your node ID
     * `sudo docker stop <ID>` to stop the node
-    * `sudo docker rm - f <ID>` to remove the container
+    * `sudo docker rm -f <ID>` to remove the container
 
     
 ‎
