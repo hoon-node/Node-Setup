@@ -3,6 +3,15 @@
 
 run () {
         
+    echo -e "\e[32mStop Node Docker"
+    echo -e "\e[39m"
+    sudo docker stop sentinel-dvpn-node
+            
+    echo -e "\e[32mRemove Node Docker"
+    echo -e "\e[39m"
+    sudo docker rm -f sentinel-dvpn-node     
+        
+    
     echo -e "\e[32mRemove old Version"
     echo -e "\e[39m"
     rm -r ${HOME}/dvpn-node/
