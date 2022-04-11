@@ -25,7 +25,7 @@ run () {
     echo ""
     echo -e "\e[32mcheckout" 
     echo -e "\e[39m"
-    git checkout v0.3.0
+    git checkout v0.3.1
     
     echo ""
     echo -e "\e[32mBuild docker"
