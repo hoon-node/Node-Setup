@@ -136,8 +136,8 @@ git checkout $(git describe --tags ${commit})
   echo ""
     echo -e "\e[32mMove created TLS keys"
     echo -e "\e[39m"
-    mv ${HOME}/tls.crt ${HOME}/.cache/tls.crt
-    mv ${HOME}/tls.key ${HOME}/.cache/tls.key
+    mv ${HOME}/tls.crt ${HOME}/.sentinelnode/tls.crt
+mv ${HOME}/tls.key ${HOME}/.sentinelnode/tls.key
     
     
 }
