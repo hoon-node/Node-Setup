@@ -166,17 +166,17 @@ sleep 5
 
 #''''''''''''ask for moniker && key name && price && test''''''''''''''''''''''''''''
 
+echo ""
+echo -e "\e[32mEnter node Moniker (the name your node is shown as) (4 letters or more):\e[m" 
+read moniker_temp </dev/tty
 
-echo -e "\e[32mEnter node Moniker (the name your node is shown as) (4 letters or mroe):\e[m" 
-read moniker_temp
-
-
+echo ""
 echo -e "\e[32mEnter the price you want to charge in ___udvpn (1dvpn=1000000udvpn) (udvpn at the end):\e[m" 
-read price_temp
+read price_temp </dev/tty
 
-
+echo ""
 echo -e "\e[32mEnter your key name:\e[m" 
-read key_temp
+read key_temp </dev/tty
 
 
 
@@ -204,14 +204,12 @@ sed -i -e "s/\(backend *= *\).*/\1$backend/" ${HOME}/.sentinelnode/config.toml
 key=${key_temp}
 
 seed=$(docker run --rm \
-    --interactive \
     --tty \
     --volume ${HOME}/.sentinelnode:/root/.sentinelnode \
     sentinel-dvpn-node process keys add $key)
 
 
 wallet=$(docker run --rm \
-    --interactive \
     --tty \
     --volume ${HOME}/.sentinelnode:/root/.sentinelnode \
     sentinel-dvpn-node process keys list private)
