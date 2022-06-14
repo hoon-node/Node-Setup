@@ -132,7 +132,8 @@ git checkout $(git describe --tags ${commit})
   -keyout ${HOME}/tls.key
   echo ""
   
-  
+sleep 5
+
   echo ""
     echo -e "\e[32mMove created TLS keys"
     echo -e "\e[39m"
@@ -140,7 +141,7 @@ git checkout $(git describe --tags ${commit})
 mv ${HOME}/tls.key ${HOME}/.sentinelnode/tls.key
 echo ""
 echo ""
-    
+sleep 5    
 
 
 
@@ -161,16 +162,16 @@ remote_url=\"${remote_url_temp}\"
 
 sed -i -e "s%\(remote_url *= *\).*%\1$remote_url%" ${HOME}/.sentinelnode/config.toml
 
-
+sleep 5
 
 #''''''''''''ask for moniker && key name && price && test''''''''''''''''''''''''''''
 
 
-echo -e "\e[32mEnter node Moniker (the name your node is shown as):\e[m" 
+echo -e "\e[32mEnter node Moniker (the name your node is shown as) (4 letters or mroe):\e[m" 
 read moniker_temp
 
 
-echo -e "\e[32mEnter the price you want to charge in ___udvpn (1dvpn=1000000udvpn):\e[m" 
+echo -e "\e[32mEnter the price you want to charge in ___udvpn (1dvpn=1000000udvpn) (udvpn at the end):\e[m" 
 read price_temp
 
 
