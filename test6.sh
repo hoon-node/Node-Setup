@@ -25,15 +25,15 @@ sed -i -e "s%\(remote_url *= *\).*%\1$remote_url%" ${HOME}/.sentinelnode/config.
 #''''''''''''ask for moniker && key name && price && test''''''''''''''''''''''''''''
 
 
-echo -e "\e[32mEnter node Moniker (the name your node is shown as):\e[m" 
+echo "\e[32mEnter node Moniker (the name your node is shown as):\e[m" 
 read moniker_temp
 
 
-echo -e "\e[32mEnter the price you want to charge in ___udvpn (1dvpn=1000000udvpn):\e[m" 
+echo "\e[32mEnter the price you want to charge in ___udvpn (1dvpn=1000000udvpn):\e[m" 
 read price_temp
 
 
-echo -e "\e[32mEnter your key name:\e[m" 
+echo "\e[32mEnter your key name:\e[m" 
 read key_temp
 
 
