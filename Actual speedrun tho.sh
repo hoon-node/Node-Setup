@@ -250,3 +250,4 @@ echo "    sentinel-dvpn-node process start"
 
 
 }
+run
