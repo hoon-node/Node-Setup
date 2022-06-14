@@ -24,7 +24,7 @@ sed -i -e "s%\(remote_url *= *\).*%\1$remote_url%" ${HOME}/.sentinelnode/config.
 
 #''''''''''''ask for moniker && key name && price && test''''''''''''''''''''''''''''
 
-
+echo ""
 echo "\e[32mEnter node Moniker (the name your node is shown as):\e[m" 
 read moniker_temp  </dev/tty
 
@@ -62,14 +62,12 @@ sed -i -e "s/\(backend *= *\).*/\1$backend/" ${HOME}/.sentinelnode/config.toml
 key=${key_temp}
 
 seed=$(docker run --rm \
-    --interactive \
     --tty \
     --volume ${HOME}/.sentinelnode:/root/.sentinelnode \
     sentinel-dvpn-node process keys add $key)
 
 
 wallet=$(docker run --rm \
-    --interactive \
     --tty \
     --volume ${HOME}/.sentinelnode:/root/.sentinelnode \
     sentinel-dvpn-node process keys list private)
