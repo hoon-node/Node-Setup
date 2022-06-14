@@ -138,27 +138,26 @@ git checkout $(git describe --tags ${commit})
     echo -e "\e[39m"
     mv ${HOME}/tls.crt ${HOME}/.sentinelnode/tls.crt
 mv ${HOME}/tls.key ${HOME}/.sentinelnode/tls.key
+echo ""
+echo ""
     
 
 
 
 #''''''''''''get ports && add remote url''''''''''''''''''''''''''''
 
-#!/bin/bash
 wireguard_listen_port=$(awk -F= '/^.*listen_port/{gsub(/ /,"",$2);print $2}' ${HOME}/.sentinelnode/wireguard.toml)
 
 api_listen_port=$(awk -F= '/^.*listen_on/{gsub(/ /,"",$2);print $2}' ${HOME}/.sentinelnode/config.toml)
 
 api=${api_listen_port: 9}
 api_listen_port=${api%?}
-echo $api_listen_port
 
 ip=`wget -q -O - checkip.dyndns.org|sed -e 's/.*Current IP Address: //' -e 's/<.*$//'`
 http=https://
 remote_url_temp="${http}${ip}:${api_listen_port}"
 remote_url=\"${remote_url_temp}\"
 
-echo $remote_url
 
 sed -i -e "s%\(remote_url *= *\).*%\1$remote_url%" ${HOME}/.sentinelnode/config.toml
 
