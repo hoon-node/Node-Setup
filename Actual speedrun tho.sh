@@ -38,7 +38,6 @@ run () {
 
    #''''''''''''INSTALL DOCKER AND STUFF''''''''''''''''''''''''''''
 
-sudo -i
 
     echo -e "\e[32mEnable IPv6 support for Docker"
     echo -e "\e[39m"
