@@ -14,7 +14,7 @@ Prerequisites:
     
 ‎
 
-For this method you need a machine where you are root by default. Giving yourself root with `sudo -i` or alike won't work. 
+For this method you have to login as root (tested with root ssh login). Giving yourself root with `sudo -i` or alike won't work. 
 Go to method 2 if that is the case.
 
 ‎
