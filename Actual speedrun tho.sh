@@ -60,7 +60,7 @@ run () {
 
 #''''''''''''INSTALL DOCKER AND STUFF''''''''''''''''''''''''''''
 
-
+    
     echo -e "\e[32mEnable IPv6 support for Docker"
     echo -e "\e[39m"
     echo '{
@@ -72,7 +72,9 @@ run () {
     echo -e "\e[32mRestart the Docker process"
     echo -e "\e[39m"
     sudo systemctl restart docker
-
+    
+    
+    sudo mkdir /etc/iptables/
     echo ""
     echo -e "\e[32mInstall iptables-persistent package"
     echo -e "\e[39m"
