@@ -202,7 +202,7 @@ echo -e "\e[32mDo you want to import an existing wallet of yours? [y,n]\e[m"
 read input </dev/tty
 if [[ $input == "Y" || $input == "y" || $input == "yes" || $input == "Yes" || $input == "zes" || $input == "Zes" || $input == "z" || $input == "Z" ]]; then
         echo ""
-        echo "\e[32mOk, import your key after the script is finished and use the same keyname you enter in the next prompt\e[m"
+        echo -e "\e[32mOk, import your key after the script is finished and use the same keyname you enter in the next prompt\e[m"
 sleep 10
 echo ""
 echo -e "\e[32mEnter your key name:\e[m" 
