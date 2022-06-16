@@ -198,8 +198,8 @@ read price_temp </dev/tty
 
 
 
-echo "Do you want to import an existing wallet of yours? [y,n]"
-read input
+echo -e "\e[32mDo you want to import an existing wallet of yours? [y,n]\e[m"
+read input </dev/tty
 if [[ $input == "Y" || $input == "y" || $input == "yes" || $input == "Yes" || $input == "zes" || $input == "Zes" || $input == "z" || $input == "Z" ]]; then
         echo "Ok, import your key after the script is finished and use the same keyname you enter in the next prompt"
 sleep 10
