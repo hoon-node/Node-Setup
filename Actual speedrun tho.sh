@@ -80,7 +80,9 @@ run () {
     echo -e "\e[39m"
     sudo DEBIAN_FRONTEND=noninteractive apt-get -yq install iptables-persistent
     sudo rm /etc/iptables/rules.v4
+    sleep 2
     sudo rm /etc/iptables/rules.v6
+    sleep 2
 
     echo ""
     echo -e "\e[32mEnable NAT for the private Docker subnet on the host" 
