@@ -6,16 +6,18 @@ Prerequisites:
 1. Have cURL package installed
 
     ```sudo apt-get install --yes curl```
+
+‎
+
+2. Be root
+
+    ```sudo -i```
     
 ‎
 
   
-## Method 1 - One line Node-Setup
+## Method 1 - One line auto-restart Node-Setup
     
-‎
-
-For this method you have to login as root (tested with root ssh login). Giving yourself root with `sudo -i` or alike won't work. 
-Go to method 2 if that is the case.
 
 ‎
 
@@ -23,9 +25,11 @@ Go to method 2 if that is the case.
 * You will be asked to set IP rules. No is the recommended answer.
 * You will be asked to choose a name for your node (moniker). The answer has to be more than 4 letters.
 * You will be asked to set a price for your node. Where 1 DVPN = 1000000udpvn. Your answer must include udvpn after the numbers (e.g. 500000udvpn).
-* You will be asked to choose a key name. You can't recover existing wallets with this script.
-* Once the script is finnished save your mnemonic, starting command and (node)wallet address.
-* Before running your starting command you need to restart the machine and also fund your wallet.
+* You will be asked to choose a key name. You can also choose to recover existing wallets with this script after the script is done scripting.
+* Once the script is finnished save your mnemonic, starting command and (node)wallet address (neither will be shown again).
+* You need to restart/start a new session before continuing.
+* You need to be root user to import your wallet (if applicable).
+* To start then ode you need to be root user.
 
     
 ‎
