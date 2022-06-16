@@ -195,9 +195,30 @@ echo ""
 echo -e "\e[32mEnter the price you want to charge in ___udvpn (1dvpn=1000000udvpn) (udvpn at the end):\e[m" 
 read price_temp </dev/tty
 
+
+
+
+echo "Do you want to import an existing wallet of yours? [y,n]"
+read input
+if [[ $input == "Y" || $input == "y" || $input == "yes" || $input == "Yes" || $input == "zes" || $input == "Zes" || $input == "z" || $input == "Z" ]]; then
+        echo "Ok, import your key after the script is finished and use the same keyname you enter in the next prompt"
+sleep 10
 echo ""
 echo -e "\e[32mEnter your key name:\e[m" 
 read key_temp </dev/tty
+
+else
+echo ""
+echo -e "\e[32mEnter your key name:\e[m" 
+read key_temp </dev/tty
+fi
+
+
+
+
+#echo ""
+#echo -e "\e[32mEnter your key name:\e[m" 
+#read key_temp </dev/tty
 
 
 
@@ -224,6 +245,11 @@ sed -i -e "s/\(backend *= *\).*/\1$backend/" ${HOME}/.sentinelnode/config.toml
 
 key=${key_temp}
 
+
+if [[ $input == "Y" || $input == "y" || $input == "yes" || $input == "Yes" || $input == "zes" || $input == "Zes" || $input == "z" || $input == "Z" ]]; then
+        echo ""
+
+else
 seed=$(docker run --rm \
     --tty \
     --volume ${HOME}/.sentinelnode:/root/.sentinelnode \
@@ -234,6 +260,19 @@ wallet=$(docker run --rm \
     --tty \
     --volume ${HOME}/.sentinelnode:/root/.sentinelnode \
     sentinel-dvpn-node process keys list private)
+fi
+
+
+#seed=$(docker run --rm \
+#    --tty \
+#    --volume ${HOME}/.sentinelnode:/root/.sentinelnode \
+#    sentinel-dvpn-node process keys add $key)
+
+
+#wallet=$(docker run --rm \
+#    --tty \
+#    --volume ${HOME}/.sentinelnode:/root/.sentinelnode \
+#    sentinel-dvpn-node process keys list private)
 
 
 echo -e "\e[32mYour wallet and node addresses are:\e[m"
