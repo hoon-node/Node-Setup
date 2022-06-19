@@ -29,6 +29,8 @@ fi
 sleep 55
 done
 
+echo -e "\e[32mThe script stopped because the docker image isn't running anymore\e[m"
+
 }
 run
 
