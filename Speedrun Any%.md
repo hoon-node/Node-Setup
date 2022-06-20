@@ -72,9 +72,13 @@ Prerequisites:
 
 3. RPC switcher (optional)
 
-    Run `nohup curl https://raw.githubusercontent.com/hoon-node/Node-Setup/main/rpcrotation.sh | bash &` for a background script that switches the RPC address in the config.toml when the node has to restart due to problems with its current RPC address
+    Run `curl https://raw.githubusercontent.com/hoon-node/Node-Setup/main/rpcrotation.sh | bash &` in `tmux` for a background script that switches the RPC address in the config.toml when the node has to restart due to problems with its current RPC address.
+    
+ 
+‎   
 
-
+* To stop the script either stop the docker image with `sudo docker rm -f sentinel-dvpn-node`.
+* Or look up the PID with 'jobs -l' and kill it with `kill <PID>`
 
 ‎
 
