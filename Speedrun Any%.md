@@ -78,7 +78,7 @@ Prerequisites:
 ‎   
 
 * To stop the script either stop the docker image with `sudo docker rm -f sentinel-dvpn-node`.
-* Or look up the PID with 'jobs -l' and kill it with `kill <PID>`
+* Or look up the PID with `jobs -l` and kill it with `kill <PID>`
 
 ‎
 
