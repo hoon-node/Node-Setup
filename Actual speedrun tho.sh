@@ -87,10 +87,15 @@ run () {
     echo ""
     echo -e "\e[32mEnable NAT for the private Docker subnet on the host" 
     echo -e "\e[39m"
-    rule="POSTROUTING -s 2001:db8:1::/64 ! -o docker0 -j MASQUERADE" && \
-sudo ip6tables -t nat -C ${rule} || \
-sudo ip6tables -t nat -A ${rule} && \
-sudo sh -c "ip6tables-save > /etc/iptables/rules.v6"
+    rule=(POSTROUTING -s 2001:db8:1::/64 ! -o docker0 -j MASQUERADE) && \
+sudo ip6tables -t nat -C "${rule[@]}" 2>/dev/null || \
+sudo ip6tables -t nat -A "${rule[@]}" && \
+sudo ip6tables-save >/etc/iptables/rules.v6
+
+#     rule="POSTROUTING -s 2001:db8:1::/64 ! -o docker0 -j MASQUERADE" && \
+# sudo ip6tables -t nat -C ${rule} || \
+# sudo ip6tables -t nat -A ${rule} && \
+# sudo sh -c "ip6tables-save > /etc/iptables/rules.v6"
 
     echo ""
     echo -e "\e[32mInstall Git package" 
@@ -139,6 +144,14 @@ git checkout $(git describe --tags ${commit})
     docker run --rm \
     --volume ${HOME}/.sentinelnode:/root/.sentinelnode \
     sentinel-dvpn-node process wireguard config init
+    
+    
+    echo ""
+    echo -e "\e[32mInitialize the v2ray configuration"
+    echo -e "\e[39m"    
+    docker run --rm \
+    --volume "${HOME}/.sentinelnode:/root/.sentinelnode" \
+    sentinel-dvpn-node process v2ray config init
 
 
 
@@ -166,6 +179,9 @@ sleep 5
     echo -e "\e[39m"
     mv ${HOME}/tls.crt ${HOME}/.sentinelnode/tls.crt
 mv ${HOME}/tls.key ${HOME}/.sentinelnode/tls.key
+
+sudo chown root:root "${HOME}/.sentinelnode/tls.crt" && \
+sudo chown root:root "${HOME}/.sentinelnode/tls.key"
 echo ""
 echo ""
 sleep 5    
