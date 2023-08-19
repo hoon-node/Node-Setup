@@ -214,8 +214,12 @@ echo -e "\e[32mEnter node Moniker (the name your node is shown as) (4 letters or
 read moniker_temp </dev/tty
 
 echo ""
-echo -e "\e[32mEnter the price you want to charge in ___udvpn (1dvpn=1000000udvpn) (udvpn at the end):\e[m" 
-read price_temp </dev/tty
+echo -e "\e[32mEnter the gigabyte price you want to charge in ___udvpn (1dvpn=1000000udvpn) (udvpn at the end):\e[m" 
+read gigabyte_prices_temp </dev/tty
+
+echo ""
+echo -e "\e[32mEnter the hourly price you want to charge in ___udvpn (1dvpn=1000000udvpn) (udvpn at the end):\e[m" 
+read hourly_prices_temp </dev/tty
 
 
 
@@ -247,7 +251,9 @@ fi
 
 moniker=\"${moniker_temp}\"
 
-price=\"${price_temp}\"
+gigabyte_prices=\"${gigabyte_prices_temp}\"
+
+hourly_prices=\"${hourly_prices_temp}\"
 
 key=\"${key_temp}\"
 
@@ -256,7 +262,9 @@ backend=\"${backend_temp}\"
 
 sed -i -e "s/\(moniker *= *\).*/\1$moniker/" ${HOME}/.sentinelnode/config.toml
 
-sed -i -e "s/\(price *= *\).*/\1$price/" ${HOME}/.sentinelnode/config.toml
+sed -i -e "s/\(gigabyte_prices *= *\).*/\1$gigabyte_prices/" ${HOME}/.sentinelnode/config.toml
+
+sed -i -e "s/\(hourly_prices *= *\).*/\1$hourly_prices/" ${HOME}/.sentinelnode/config.toml
 
 sed -i -e "s/\(from *= *\).*/\1$key/" ${HOME}/.sentinelnode/config.toml
 
