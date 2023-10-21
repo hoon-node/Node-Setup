@@ -263,11 +263,13 @@ backend=\"${backend_temp}\"
 sed -i -e "s/\(moniker *= *\).*/\1$moniker/" ${HOME}/.sentinelnode/config.toml
 
 #sed -i -e "s/\(gigabyte_prices *= *\).*/\1$gigabyte_prices/" ${HOME}/.sentinelnode/config.toml
-awk -v prices="$gigabyte_prices" '{gsub(/gigabyte_prices *= *.*/, "gigabyte_prices = \"" prices "\"")}1' ${HOME}/.sentinelnode/config.toml > temp && mv temp ${HOME}/.sentinelnode/config.toml
+awk -v prices="$gigabyte_prices" '{gsub(/gigabyte_prices *= *\".*\"/, "gigabyte_prices = " prices)}1' ${HOME}/.sentinelnode/config.toml > temp && mv temp ${HOME}/.sentinelnode/config.toml
+
 
 
 #sed -i -e "s/\(hourly_prices *= *\).*/\1$hourly_prices/" ${HOME}/.sentinelnode/config.toml
-awk -v prices="$hourly_prices" '{gsub(/hourly_prices *= *.*/, "hourly_prices = \"" prices "\"")}1' ${HOME}/.sentinelnode/config.toml > temp && mv temp ${HOME}/.sentinelnode/config.toml
+awk -v prices="$hourly_prices" '{gsub(/hourly_prices *= *\".*\"/, "hourly_prices = " prices)}1' ${HOME}/.sentinelnode/config.toml > temp && mv temp ${HOME}/.sentinelnode/config.toml
+
 
 
 sed -i -e "s/\(from *= *\).*/\1$key/" ${HOME}/.sentinelnode/config.toml
