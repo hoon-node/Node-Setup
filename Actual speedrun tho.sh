@@ -318,12 +318,12 @@ fi
 #    sentinel-dvpn-node process keys list private)
 
 
-echo -e "\e[32mYour wallet and node addresses are:\e[m"
+#echo -e "\e[32mYour wallet and node addresses are:\e[m"
+#echo ""
+#echo $wallet
+#echo ""
 echo ""
-echo $wallet
-echo ""
-echo ""
-echo -e "\e[32mYour seedphrase is:\e[m"
+echo -e "\e[32mYour seedphrase, node/wallet address is:\e[m"
 echo ""
 cat output.txt
 
