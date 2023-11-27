@@ -214,15 +214,15 @@ echo ""
 echo -e "\e[32mEnter node Moniker (the name your node is shown as) (4 letters or more):\e[m" 
 read moniker_temp </dev/tty
 
-echo ""
-echo -e "\e[32mEnter the gigabyte price you want to charge (skip for defaul):\e[m" 
-read gigabyte_prices_temp </dev/tty
-gigabyte_prices_temp=${gigabyte_prices_temp:-"47794ibc/31FEE1A2A9F9C01113F90BD0BBCCE8FD6BBB8585FAF109A2101827DD1D5B95B8,8368ibc/A8C2D23A1E6F95DA4E48BA349667E322BD7A6C996D8A4AAE8BA72E190F3D1477,1073502ibc/B1C0DDB14F25279A2026BC8794E12B259F8BDA546A3C5132CCAEE4431CE36783,111582ibc/ED07A3391A112B175915CD8FAF43A2DA8E4790EDE12566649D0C2F97716B8518,15342624udvpn"}  # Set default value if input is empty
+#echo ""
+#echo -e "\e[32mEnter the gigabyte price you want to charge (skip for defaul):\e[m" 
+#read gigabyte_prices_temp </dev/tty
+#gigabyte_prices_temp=${gigabyte_prices_temp:-"47794ibc/31FEE1A2A9F9C01113F90BD0BBCCE8FD6BBB8585FAF109A2101827DD1D5B95B8,8368ibc/A8C2D23A1E6F95DA4E48BA349667E322BD7A6C996D8A4AAE8BA72E190F3D1477,1073502ibc/B1C0DDB14F25279A2026BC8794E12B259F8BDA546A3C5132CCAEE4431CE36783,111582ibc/ED07A3391A112B175915CD8FAF43A2DA8E4790EDE12566649D0C2F97716B8518,15342624udvpn"}  # Set default value if input is empty
 
 echo ""
-echo -e "\e[32mEnter the hourly price you want to charge in ___udvpn (skip for defaul):\e[m" 
-read hourly_prices_temp </dev/tty
-hourly_prices_temp=${hourly_prices_temp:-"16800ibc/31FEE1A2A9F9C01113F90BD0BBCCE8FD6BBB8585FAF109A2101827DD1D5B95B8,700ibc/A8C2D23A1E6F95DA4E48BA349667E322BD7A6C996D8A4AAE8BA72E190F3D1477,1701720ibc/B1C0DDB14F25279A2026BC8794E12B259F8BDA546A3C5132CCAEE4431CE36783,17179ibc/ED07A3391A112B175915CD8FAF43A2DA8E4790EDE12566649D0C2F97716B8518,13557200udvpn"}  # Set default value if input is empty
+#echo -e "\e[32mEnter the hourly price you want to charge in ___udvpn (skip for defaul):\e[m" 
+#read hourly_prices_temp </dev/tty
+#hourly_prices_temp=${hourly_prices_temp:-"16800ibc/31FEE1A2A9F9C01113F90BD0BBCCE8FD6BBB8585FAF109A2101827DD1D5B95B8,700ibc/A8C2D23A1E6F95DA4E48BA349667E322BD7A6C996D8A4AAE8BA72E190F3D1477,1701720ibc/B1C0DDB14F25279A2026BC8794E12B259F8BDA546A3C5132CCAEE4431CE36783,17179ibc/ED07A3391A112B175915CD8FAF43A2DA8E4790EDE12566649D0C2F97716B8518,13557200udvpn"}  # Set default value if input is empty
 
 
 
@@ -253,9 +253,8 @@ fi
 
 moniker=\"${moniker_temp}\"
 
-gigabyte_prices=\"${gigabyte_prices_temp}\"
-
-hourly_prices=\"${hourly_prices_temp}\"
+#gigabyte_prices=\"${gigabyte_prices_temp}\"
+#hourly_prices=\"${hourly_prices_temp}\"
 
 key=\"${key_temp}\"
 
@@ -265,21 +264,22 @@ backend=\"${backend_temp}\"
 sed -i -e "s/\(moniker *= *\).*/\1$moniker/" ${HOME}/.sentinelnode/config.toml
 
 #sed -i -e "s/\(gigabyte_prices *= *\).*/\1$gigabyte_prices/" ${HOME}/.sentinelnode/config.toml
-awk -v prices="$gigabyte_prices" '{gsub(/gigabyte_prices *= *\".*\"/, "gigabyte_prices = " prices)}1' ${HOME}/.sentinelnode/config.toml > temp && mv temp ${HOME}/.sentinelnode/config.toml
-
-
-
+#awk -v prices="$gigabyte_prices" '{gsub(/gigabyte_prices *= *\".*\"/, "gigabyte_prices = " prices)}1' ${HOME}/.sentinelnode/config.toml > temp && mv temp ${HOME}/.sentinelnode/config.toml
 #sed -i -e "s/\(hourly_prices *= *\).*/\1$hourly_prices/" ${HOME}/.sentinelnode/config.toml
-awk -v prices="$hourly_prices" '{gsub(/hourly_prices *= *\".*\"/, "hourly_prices = " prices)}1' ${HOME}/.sentinelnode/config.toml > temp && mv temp ${HOME}/.sentinelnode/config.toml
+#awk -v prices="$hourly_prices" '{gsub(/hourly_prices *= *\".*\"/, "hourly_prices = " prices)}1' ${HOME}/.sentinelnode/config.toml > temp && mv temp ${HOME}/.sentinelnode/config.toml
 
+
+awk '/hourly_prices/ {$0="hourly_prices = \"168000ibc/31FEE1A2A9F9C01113F90BD0BBCCE8FD6BBB8585FAF109A2101827DD1D5B95B8,700ibc/A8C2D23A1E6F95DA4E48BA349667E322BD7A6C996D8A4AAE8BA72E190F3D1477,1701720ibc/B1C0DDB14F25279A2026BC8794E12B259F8BDA546A3C5132CCAEE4431CE36783,17179ibc/ED07A3391A112B175915CD8FAF43A2DA8E4790EDE12566649D0C2F97716B8518,13557200udvpn\""} 1' ~/.sentinelnode/config.toml > temp && mv temp ~/.sentinelnode/config.toml
+awk '/gigabyte_prices/ {$0="gigabyte_prices = \"47794ibc/31FEE1A2A9F9C01113F90BD0BBCCE8FD6BBB8585FAF109A2101827DD1D5B95B8,8368ibc/A8C2D23A1E6F95DA4E48BA349667E322BD7A6C996D8A4AAE8BA72E190F3D1477,1073502ibc/B1C0DDB14F25279A2026BC8794E12B259F8BDA546A3C5132CCAEE4431CE36783,111582ibc/ED07A3391A112B175915CD8FAF43A2DA8E4790EDE12566649D0C2F97716B8518,15342624udvpn\""} 1' ~/.sentinelnode/config.toml > temp && mv temp ~/.sentinelnode/config.toml
 
 
 sed -i -e "s/\(from *= *\).*/\1$key/" ${HOME}/.sentinelnode/config.toml
 
 sed -i -e "s/\(backend *= *\).*/\1$backend/" ${HOME}/.sentinelnode/config.toml
 
-awk '/rpc_addresses/ {$0="rpc_addresses = \"https://rpc.sentinel.quokkastake.io:443,https://rpc.mathnodes.com:443,https://sentinel-rpc.badgerbite.io:443,https://sentinel-rpc.publicnode.com\""} 1' ~/.sentinelnode/config.toml > temp && mv temp ~/.sentinelnode/config.toml
+awk '/rpc_addresses/ {$0="rpc_addresses = \"https://rpc.sentinel.quokkastake.io:443,https://rpc.mathnodes.com:443,https://sentinel-rpc.badgerbite.io:443,https://sentinel-rpc.publicnode.com:443\""} 1' ~/.sentinelnode/config.toml > temp && mv temp ~/.sentinelnode/config.toml
 
+sleep 5 
 
 #''''''''''''keys && seeds && farwell''''''''''''''''''''''''''''
 
@@ -351,12 +351,12 @@ echo "    --publish ${wireguard_listen_port}:${wireguard_listen_port}/udp \\"
 echo "    sentinel-dvpn-node process start"
 echo ""
 echo ""
-echo "sudo docker run -d \"
-echo "    --name sentinel-dvpn-node \"
-echo "    --restart unless-stopped \"
-echo "    --volume "${HOME}/.sentinelnode:/root/.sentinelnode" \"
-echo "    --publish ${api_listen_port}:${api_listen_port}/tcp \"
-echo "    --publish ${v2ray_listen_port}:${v2ray_listen_port}/tcp \"
+echo "sudo docker run -d \\"
+echo "    --name sentinel-dvpn-node \\"
+echo "    --restart unless-stopped \\"
+echo "    --volume "${HOME}/.sentinelnode:/root/.sentinelnode" \\"
+echo "    --publish ${api_listen_port}:${api_listen_port}/tcp \\"
+echo "    --publish ${v2ray_listen_port}:${v2ray_listen_port}/tcp \\"
 echo "    sentinel-dvpn-node process start"
 
 
