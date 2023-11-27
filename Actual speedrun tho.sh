@@ -191,6 +191,7 @@ sleep 5
 #''''''''''''get ports && add remote url''''''''''''''''''''''''''''
 
 wireguard_listen_port=$(awk -F= '/^.*listen_port/{gsub(/ /,"",$2);print $2}' ${HOME}/.sentinelnode/wireguard.toml)
+v2ray_listen_port=$(awk -F= '/^.*listen_port/{gsub(/ /,"",$2);print $2}' ${HOME}/.sentinelnode/v2ray.toml)
 
 api_listen_port=$(awk -F= '/^.*listen_on/{gsub(/ /,"",$2);print $2}' ${HOME}/.sentinelnode/config.toml)
 
@@ -214,13 +215,14 @@ echo -e "\e[32mEnter node Moniker (the name your node is shown as) (4 letters or
 read moniker_temp </dev/tty
 
 echo ""
-echo -e "\e[32mEnter the gigabyte price you want to charge in ___udvpn (1dvpn=1000000udvpn) (udvpn at the end):\e[m" 
+echo -e "\e[32mEnter the gigabyte price you want to charge (skip for defaul):\e[m" 
 read gigabyte_prices_temp </dev/tty
+gigabyte_prices_temp=${gigabyte_prices_temp:-"47794ibc/31FEE1A2A9F9C01113F90BD0BBCCE8FD6BBB8585FAF109A2101827DD1D5B95B8,8368ibc/A8C2D23A1E6F95DA4E48BA349667E322BD7A6C996D8A4AAE8BA72E190F3D1477,1073502ibc/B1C0DDB14F25279A2026BC8794E12B259F8BDA546A3C5132CCAEE4431CE36783,111582ibc/ED07A3391A112B175915CD8FAF43A2DA8E4790EDE12566649D0C2F97716B8518,15342624udvpn"}  # Set default value if input is empty
 
 echo ""
-echo -e "\e[32mEnter the hourly price you want to charge in ___udvpn (1dvpn=1000000udvpn) (udvpn at the end):\e[m" 
+echo -e "\e[32mEnter the hourly price you want to charge in ___udvpn (skip for defaul):\e[m" 
 read hourly_prices_temp </dev/tty
-
+hourly_prices_temp=${hourly_prices_temp:-"16800ibc/31FEE1A2A9F9C01113F90BD0BBCCE8FD6BBB8585FAF109A2101827DD1D5B95B8,700ibc/A8C2D23A1E6F95DA4E48BA349667E322BD7A6C996D8A4AAE8BA72E190F3D1477,1701720ibc/B1C0DDB14F25279A2026BC8794E12B259F8BDA546A3C5132CCAEE4431CE36783,17179ibc/ED07A3391A112B175915CD8FAF43A2DA8E4790EDE12566649D0C2F97716B8518,13557200udvpn"}  # Set default value if input is empty
 
 
 
@@ -276,6 +278,8 @@ sed -i -e "s/\(from *= *\).*/\1$key/" ${HOME}/.sentinelnode/config.toml
 
 sed -i -e "s/\(backend *= *\).*/\1$backend/" ${HOME}/.sentinelnode/config.toml
 
+awk '/rpc_addresses/ {$0="rpc_addresses = \"https://rpc.sentinel.quokkastake.io:443,https://rpc.mathnodes.com:443,https://sentinel-rpc.badgerbite.io:443,https://sentinel-rpc.publicnode.com\""} 1' ~/.sentinelnode/config.toml > temp && mv temp ~/.sentinelnode/config.toml
+
 
 #''''''''''''keys && seeds && farwell''''''''''''''''''''''''''''
 
@@ -326,7 +330,7 @@ echo -e "\e[31m -----------SAVE BOTH------------ \e[m"
 echo -e 
 
 echo ""
-echo -e "\e[32mTo start your node use the following command (maybe use tmux or screen):\e[m"
+echo -e "\e[32mTo start your node use the following command (Wireguard/V2Ray):\e[m"
 echo ""
 echo "sudo docker run -d \\"
 echo "    --name sentinel-dvpn-node \\"
@@ -345,6 +349,16 @@ echo "    --sysctl net.ipv6.conf.default.forwarding=1 \\"
 echo "    --publish ${api_listen_port}:${api_listen_port}/tcp \\"
 echo "    --publish ${wireguard_listen_port}:${wireguard_listen_port}/udp \\"
 echo "    sentinel-dvpn-node process start"
+echo ""
+echo ""
+echo "sudo docker run -d \"
+echo "    --name sentinel-dvpn-node \"
+echo "    --restart unless-stopped \"
+echo "    --volume "${HOME}/.sentinelnode:/root/.sentinelnode" \"
+echo "    --publish ${api_listen_port}:${api_listen_port}/tcp \"
+echo "    --publish ${v2ray_listen_port}:${v2ray_listen_port}/tcp \"
+echo "    sentinel-dvpn-node process start"
+
 
 
 
