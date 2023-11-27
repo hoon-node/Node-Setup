@@ -295,6 +295,8 @@ seed=$(docker run --rm \
     --tty \
     --volume ${HOME}/.sentinelnode:/root/.sentinelnode \
     sentinel-dvpn-node process keys add $key)
+    
+echo "$seed" > output.txt
 
 
 wallet=$(docker run --rm \
@@ -323,7 +325,7 @@ echo ""
 echo ""
 echo -e "\e[32mYour seedphrase is:\e[m"
 echo ""
-echo $seed
+cat output.txt
 
 echo -e 
 echo -e "\e[31m -----------SAVE BOTH------------ \e[m"
@@ -359,7 +361,7 @@ echo "    --publish ${api_listen_port}:${api_listen_port}/tcp \\"
 echo "    --publish ${v2ray_listen_port}:${v2ray_listen_port}/tcp \\"
 echo "    sentinel-dvpn-node process start"
 
-
+rm output.txt
 
 
 }
