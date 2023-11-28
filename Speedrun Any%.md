@@ -18,7 +18,13 @@ Prerequisites:
 3. Be root
 
     ```sudo -i```
-    
+
+‎
+
+> [!NOTE]
+> Tested with Ubuntu 22.04
+
+
 ‎
 
   
@@ -30,7 +36,7 @@ Prerequisites:
 * You will be asked to choose a name for your node (moniker). The answer has to be more than 4 letters.
 * You will be asked to choose a key name. You can also choose to recover existing wallet after the script is done scripting.
 * Once the script is finished save your mnemonic, starting command and (node)wallet address (neither will be shown again).
-* You can change the default min price once the installation has finished
+* You can change the default min price once the installation has finished.
 
     
 ‎
