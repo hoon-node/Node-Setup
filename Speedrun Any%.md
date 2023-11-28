@@ -36,7 +36,7 @@ Prerequisites:
 ‎
 
 
-1. Run `curl https://raw.githubusercontent.com/hoon-node/Node-Setup/main/Actual%20speedrun%20tho.sh | bash`
+1. Run `curl https://raw.githubusercontent.com/hoon-node/Node-Setup/main/Speedrun.sh | bash`
 
     This will 
     * Get the official Docker installation script
