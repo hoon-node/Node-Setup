@@ -1,6 +1,6 @@
 # Node-Setup (Wireguard or V2Ray)
 
-Check [https://github.com/sentinel-official/docs/tree/master/guides/nodes/dVPN](https://docs.sentinel.co/node-setup) for lengthily guide
+Check [https://docs.sentinel.co/node-setup](https://docs.sentinel.co/node-setup) for lengthily guide
 
 Prerequisites:
 1. Update and Upgrade
