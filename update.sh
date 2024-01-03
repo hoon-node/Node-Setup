@@ -24,7 +24,7 @@ run () {
     echo -e "\e[39m"
 
     git fetch
-    git checkout v0.7.0
+    git checkout v0.7.1
 
     echo ""
     echo -e "\e[32mBuilding Docker image..."
@@ -41,10 +41,10 @@ run () {
     echo -e "\e[39m"
 
     # Update configuration file
-    sed -i 's/rpc_addresses = "https:\/\/rpc.sentinel.co:443"/rpc_addresses = "https:\/\/rpc.sentinel.quokkastake.io:443"/' ~/.sentinelnode/config.toml
-    sed -i 's/price = ""/gigabyte_prices = "5105000ibc\/31FEE1A2A9F9C01113F90BD0BBCCE8FD6BBB8585FAF109A2101827DD1D5B95B8,356000ibc\/A8C2D23A1E6F95DA4E48BA349667E322BD7A6C996D8A4AAE8BA72E190F3D1477,520000000ibc\/B1C0DDB14F25279A2026BC8794E12B259F8BDA546A3C5132CCAEE4431CE36783,5200000ibc\/ED07A3391A112B175915CD8FAF43A2DA8E4790EDE12566649D0C2F97716B8518,15000000udvpn"/' ~/.sentinelnode/config.toml
-    sed -i '/gigabyte_prices = /a hourly_prices = "4900000udvpn"' ~/.sentinelnode/config.toml
-    sed -i '/provider = /d' ~/.sentinelnode/config.toml
+    # sed -i 's/rpc_addresses = "https:\/\/rpc.sentinel.co:443"/rpc_addresses = "https:\/\/rpc.sentinel.quokkastake.io:443"/' ~/.sentinelnode/config.toml
+    # sed -i 's/price = ""/gigabyte_prices = "5105000ibc\/31FEE1A2A9F9C01113F90BD0BBCCE8FD6BBB8585FAF109A2101827DD1D5B95B8,356000ibc\/A8C2D23A1E6F95DA4E48BA349667E322BD7A6C996D8A4AAE8BA72E190F3D1477,520000000ibc\/B1C0DDB14F25279A2026BC8794E12B259F8BDA546A3C5132CCAEE4431CE36783,5200000ibc\/ED07A3391A112B175915CD8FAF43A2DA8E4790EDE12566649D0C2F97716B8518,15000000udvpn"/' ~/.sentinelnode/config.toml
+    # sed -i '/gigabyte_prices = /a hourly_prices = "4900000udvpn"' ~/.sentinelnode/config.toml
+    # sed -i '/provider = /d' ~/.sentinelnode/config.toml
 
 
      echo ""
