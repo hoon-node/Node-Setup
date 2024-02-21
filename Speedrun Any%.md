@@ -36,7 +36,8 @@ Prerequisites:
 * You will be asked to choose a name for your node (moniker). The answer has to be more than 4 letters.
 * You will be asked to choose a key name. You can also choose to recover existing wallet after the script is done scripting.
 * Once the script is finished save your mnemonic, starting command and (node)wallet address (neither will be shown again).
-* You can change the default min price once the installation has finished.
+* You can change the default min price in the config.toml once the installation has finished.
+* If you run v2ray you need to set ```[handshake] enable = false``` and ```type = "v2ray"``` in the config.toml before starting the node
 
     
 ‎
