@@ -214,47 +214,60 @@ echo ""
 echo -e "\e[32mEnter node Moniker (the name your node is shown as) (4 letters or more):\e[m" 
 read moniker_temp </dev/tty
 
-#echo ""
-#echo -e "\e[32mEnter the gigabyte price you want to charge (skip for defaul):\e[m" 
-#read gigabyte_prices_temp </dev/tty
-#gigabyte_prices_temp=${gigabyte_prices_temp:-"52573ibc/31FEE1A2A9F9C01113F90BD0BBCCE8FD6BBB8585FAF109A2101827DD1D5B95B8,9204ibc/A8C2D23A1E6F95DA4E48BA349667E322BD7A6C996D8A4AAE8BA72E190F3D1477,1180852ibc/B1C0DDB14F25279A2026BC8794E12B259F8BDA546A3C5132CCAEE4431CE36783,122740ibc/ED07A3391A112B175915CD8FAF43A2DA8E4790EDE12566649D0C2F97716B8518,15342624udvpn"}  # Set default value if input is empty
 
 echo ""
-#echo -e "\e[32mEnter the hourly price you want to charge in ___udvpn (skip for defaul):\e[m" 
-#read hourly_prices_temp </dev/tty
-#hourly_prices_temp=${hourly_prices_temp:-"18480ibc/31FEE1A2A9F9C01113F90BD0BBCCE8FD6BBB8585FAF109A2101827DD1D5B95B8,770ibc/A8C2D23A1E6F95DA4E48BA349667E322BD7A6C996D8A4AAE8BA72E190F3D1477,1871892ibc/B1C0DDB14F25279A2026BC8794E12B259F8BDA546A3C5132CCAEE4431CE36783,18897ibc/ED07A3391A112B175915CD8FAF43A2DA8E4790EDE12566649D0C2F97716B8518,13557200udvpn"}  # Set default value if input is empty
-
-
-
-echo -e "\e[32mDo you want to import an existing wallet of yours? [y,n]\e[m"
-read input </dev/tty
-if [[ $input == "Y" || $input == "y" || $input == "yes" || $input == "Yes" || $input == "zes" || $input == "Zes" || $input == "z" || $input == "Z" ]]; then
-        echo ""
-        echo -e "\e[32mOk, import your key after the script is finished and use the same keyname you enter in the next prompt\e[m"
-sleep 10
-echo ""
-echo -e "\e[32mEnter your key name:\e[m" 
-read key_temp </dev/tty
-
+echo -e "\e[32mDo you want to host a v2ray node? [y = v2ray | n = wireguard]\e[m"
+read v2ray_input </dev/tty
+if [[ $v2ray_input == "Y" || $v2ray_input == "y" || $v2ray_input == "yes" || $v2ray_input == "Yes" || $v2ray_input == "zes" || $v2ray_input == "Zes" || $v2ray_input == "z" || $v2ray_input == "Z" ]]; then
+    echo ""
+    echo -e "\e[32mV2ray applied\e[m"
+    awk '/enable/ {$NF="false"} /type/ {$NF="\"v2ray\""} 1' ~/.sentinelnode/config.toml > temp && mv temp ~/.sentinelnode/config.toml
 else
-echo ""
-echo -e "\e[32mEnter your key name:\e[m" 
-read key_temp </dev/tty
+    echo ""
+    echo "Wireguard applied"
 fi
 
 
+echo ""
+echo -e "\e[32mAre you hosting a residential node [y,n]\e[m"
+read residential_input </dev/tty
+if [[ $residential_input == "Y" || $residential_input == "y" || $residential_input == "yes" || $residential_input == "Yes" || $residential_input == "zes" || $residential_input == "Zes" || $residential_input == "z" || $residential_input == "Z" ]]; then
+    echo ""    
+    awk '/hourly_prices/ {$0="hourly_prices = \"18550ibc/31FEE1A2A9F9C01113F90BD0BBCCE8FD6BBB8585FAF109A2101827DD1D5B95B8,800ibc/A8C2D23A1E6F95DA4E48BA349667E322BD7A6C996D8A4AAE8BA72E190F3D1477,385600ibc/B1C0DDB14F25279A2026BC8794E12B259F8BDA546A3C5132CCAEE4431CE36783,4340ibc/ED07A3391A112B175915CD8FAF43A2DA8E4790EDE12566649D0C2F97716B8518,10000000udvpn\""} 1' ~/.sentinelnode/config.toml > temp && mv temp ~/.sentinelnode/config.toml
+    awk '/gigabyte_prices/ {$0="gigabyte_prices = \"52573ibc/31FEE1A2A9F9C01113F90BD0BBCCE8FD6BBB8585FAF109A2101827DD1D5B95B8,9204ibc/A8C2D23A1E6F95DA4E48BA349667E322BD7A6C996D8A4AAE8BA72E190F3D1477,1180852ibc/B1C0DDB14F25279A2026BC8794E12B259F8BDA546A3C5132CCAEE4431CE36783,122740ibc/ED07A3391A112B175915CD8FAF43A2DA8E4790EDE12566649D0C2F97716B8518,15342624udvpn\""} 1' ~/.sentinelnode/config.toml > temp && mv temp ~/.sentinelnode/config.toml
+    echo -e "\e[32mResidential...\e[m"
+else
+    echo ""
+    awk '/hourly_prices/ {$0="hourly_prices = \"18550ibc/31FEE1A2A9F9C01113F90BD0BBCCE8FD6BBB8585FAF109A2101827DD1D5B95B8,800ibc/A8C2D23A1E6F95DA4E48BA349667E322BD7A6C996D8A4AAE8BA72E190F3D1477,385600ibc/B1C0DDB14F25279A2026BC8794E12B259F8BDA546A3C5132CCAEE4431CE36783,4340ibc/ED07A3391A112B175915CD8FAF43A2DA8E4790EDE12566649D0C2F97716B8518,4160000udvpn\""} 1' ~/.sentinelnode/config.toml > temp && mv temp ~/.sentinelnode/config.toml
+    awk '/gigabyte_prices/ {$0="gigabyte_prices = \"52573ibc/31FEE1A2A9F9C01113F90BD0BBCCE8FD6BBB8585FAF109A2101827DD1D5B95B8,9204ibc/A8C2D23A1E6F95DA4E48BA349667E322BD7A6C996D8A4AAE8BA72E190F3D1477,1180852ibc/B1C0DDB14F25279A2026BC8794E12B259F8BDA546A3C5132CCAEE4431CE36783,122740ibc/ED07A3391A112B175915CD8FAF43A2DA8E4790EDE12566649D0C2F97716B8518,15342624udvpn\""} 1' ~/.sentinelnode/config.toml > temp && mv temp ~/.sentinelnode/config.toml
+    echo -e "\e[32mCloud...\e[m"
+fi
 
 
-#echo ""
-#echo -e "\e[32mEnter your key name:\e[m" 
-#read key_temp </dev/tty
-
+echo ""
+echo -e "\e[32mDo you want to import an existing wallet of yours? [y,n]\e[m"
+read input </dev/tty
+if [[ $input == "Y" || $input == "y" || $input == "yes" || $input == "Yes" || $input == "zes" || $input == "Zes" || $input == "z" || $input == "Z" ]]; then
+    echo ""
+    echo -e "\e[32mOk, import/recover your key after the script is finished with the following lines. Use the same keyname you enter in the next prompt\e[m"
+    echo ""
+    echo "docker run --rm \\"
+    echo "    --interactive \\"
+    echo "    --tty \\"
+    echo "    --volume ${HOME}/.sentinelnode:/root/.sentinelnode \\"
+    echo -e "    sentinel-dvpn-node process keys add \e[32m\$keyname\e[m \e[35m--recover\e[m"
+    sleep 5
+    echo ""
+    echo -e "\e[32mEnter your key name:\e[m" 
+    read key_temp </dev/tty
+else
+    echo ""
+    echo -e "\e[32mEnter your key name:\e[m" 
+    read key_temp </dev/tty
+fi
 
 
 moniker=\"${moniker_temp}\"
-
-#gigabyte_prices=\"${gigabyte_prices_temp}\"
-#hourly_prices=\"${hourly_prices_temp}\"
 
 key=\"${key_temp}\"
 
@@ -262,16 +275,6 @@ backend_temp=test
 backend=\"${backend_temp}\"
 
 sed -i -e "s/\(moniker *= *\).*/\1$moniker/" ${HOME}/.sentinelnode/config.toml
-
-#sed -i -e "s/\(gigabyte_prices *= *\).*/\1$gigabyte_prices/" ${HOME}/.sentinelnode/config.toml
-#awk -v prices="$gigabyte_prices" '{gsub(/gigabyte_prices *= *\".*\"/, "gigabyte_prices = " prices)}1' ${HOME}/.sentinelnode/config.toml > temp && mv temp ${HOME}/.sentinelnode/config.toml
-#sed -i -e "s/\(hourly_prices *= *\).*/\1$hourly_prices/" ${HOME}/.sentinelnode/config.toml
-#awk -v prices="$hourly_prices" '{gsub(/hourly_prices *= *\".*\"/, "hourly_prices = " prices)}1' ${HOME}/.sentinelnode/config.toml > temp && mv temp ${HOME}/.sentinelnode/config.toml
-
-
-awk '/hourly_prices/ {$0="hourly_prices = \"18550ibc/31FEE1A2A9F9C01113F90BD0BBCCE8FD6BBB8585FAF109A2101827DD1D5B95B8,800ibc/A8C2D23A1E6F95DA4E48BA349667E322BD7A6C996D8A4AAE8BA72E190F3D1477,385600ibc/B1C0DDB14F25279A2026BC8794E12B259F8BDA546A3C5132CCAEE4431CE36783,4340ibc/ED07A3391A112B175915CD8FAF43A2DA8E4790EDE12566649D0C2F97716B8518,4160000udvpn\""} 1' ~/.sentinelnode/config.toml > temp && mv temp ~/.sentinelnode/config.toml
-awk '/gigabyte_prices/ {$0="gigabyte_prices = \"52573ibc/31FEE1A2A9F9C01113F90BD0BBCCE8FD6BBB8585FAF109A2101827DD1D5B95B8,9204ibc/A8C2D23A1E6F95DA4E48BA349667E322BD7A6C996D8A4AAE8BA72E190F3D1477,1180852ibc/B1C0DDB14F25279A2026BC8794E12B259F8BDA546A3C5132CCAEE4431CE36783,122740ibc/ED07A3391A112B175915CD8FAF43A2DA8E4790EDE12566649D0C2F97716B8518,15342624udvpn\""} 1' ~/.sentinelnode/config.toml > temp && mv temp ~/.sentinelnode/config.toml
-
 
 sed -i -e "s/\(from *= *\).*/\1$key/" ${HOME}/.sentinelnode/config.toml
 
