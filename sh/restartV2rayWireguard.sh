@@ -5,6 +5,7 @@ recentRestartFile="/root/.sentinelnode/recentRestart"
 
 # Check if the recentRestart file exists
 if [ -f "$recentRestartFile" ]; then
+    echo "Recent restart file exists"
     # Get the timestamp of the file's last modification
     lastModified=$(stat -c %Y "$recentRestartFile")
     
