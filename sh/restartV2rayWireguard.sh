@@ -1,5 +1,33 @@
 #!/bin/bash
 
+# Define the full path for the recentRestart file
+recentRestartFile="/full/path/to/recentRestart"
+
+# Check if the recentRestart file exists
+if [ -f "$recentRestartFile" ]; then
+    # Get the timestamp of the file's last modification
+    lastModified=$(stat -c %Y "$recentRestartFile")
+    
+    # Get the current timestamp
+    currentTime=$(date +%s)
+    
+    # Calculate the time difference in seconds
+    timeDifference=$((currentTime - lastModified))
+    
+    # Check if the recentRestart file was created within the last 5 minutes (300 seconds)
+    if [ "$timeDifference" -le 300 ]; then
+        echo "Recent restart detected. Exiting script."
+        exit 0
+    else
+        # Delete the old recentRestart file
+        rm "$recentRestartFile"
+    fi
+fi
+
+# Create a new recentRestart file
+touch "$recentRestartFile"
+
+
 # Read the node type from the config file
 node_type=$(grep -oP 'type = "\K[^"]+' /root/.sentinelnode/config.toml)
 
