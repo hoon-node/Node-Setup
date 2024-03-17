@@ -3,7 +3,7 @@
 # Read the node type from the config file
 node_type=$(cat /root/.sentinelnode/config.toml | grep type | awk -F'"' '{print $2}')
 
-if [ "$node_type" == "v2ray" ]; then
+if [ "$node_type" = "v2ray" ]; then
   echo "Restarting v2ray node..."
   sudo docker rm -f sentinel-dvpn-node && echo "Docker container removed" && \
   rm ${HOME}/.sentinelnode/data.db && echo "File deleted" && \
@@ -15,7 +15,7 @@ if [ "$node_type" == "v2ray" ]; then
     --publish $(grep -oP 'listen_on = \"0.0.0.0:\K\d+' ~/.sentinelnode/config.toml):$(grep -oP 'listen_on = \"0.0.0.0:\K\d+' ~/.sentinelnode/config.toml)/tcp \
     --publish $(grep -oP 'listen_port = \K\d+' ~/.sentinelnode/v2ray.toml):$(grep -oP 'listen_port = \K\d+' ~/.sentinelnode/v2ray.toml)/tcp \
     sentinel-dvpn-node process start
-elif [ "$node_type" == "wireguard" ]; then
+elif [ "$node_type" = "wireguard" ]; then
   echo "Restarting wireguard node..."
   sudo docker rm -f sentinel-dvpn-node && echo "Docker container removed" && \
   rm ${HOME}/.sentinelnode/data.db && echo "File deleted" && \
