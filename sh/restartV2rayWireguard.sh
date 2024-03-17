@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the full path for the recentRestart file
-recentRestartFile="/full/path/to/recentRestart"
+recentRestartFile="/root/.sentinelnode/recentRestart"
 
 # Check if the recentRestart file exists
 if [ -f "$recentRestartFile" ]; then
